@@ -20,21 +20,14 @@ async function addUser(req, res) {
     const user = req.body.transaction;
     await connection.query('SELECT id FROM usuario WHERE email = ?', [user.email], (err, result) => {
         if (err != null) {
-            console.log(err);
         } else {
             if (result == '') {
-                console.log('No hay coincidencias');
             } else {
-                console.log('dsvdsdsv', result[0].id);
                 connection.query('INSERT INTO usuario_curso values (?,?)', [result[0].id, user.id], (err2, result2) => {
                     if (err2 != null) {
-                        console.log(err2);
                     } else {
-                        console.log('acoiabsvoaivbs');
                         if (result2 == '') {
-                            console.log('No se pudo insertar');
                         } else {
-                            console.log('Guardado');
                         }
                     }
                 })

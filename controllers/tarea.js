@@ -17,7 +17,6 @@ userOperation = function(req, res) {
 
 function envioTarea(req, res) {
     const tarea = req.body.transaction;
-    console.log('Tarea ->', tarea);
     /* connection.query(
         "INSERT INTO usuario values(?,?,?,?)", [newUsuario.id, newUsuario.nombre, newUsuario.email, hash],
         (err, result) => {

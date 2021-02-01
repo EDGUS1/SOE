@@ -153,15 +153,12 @@ html(lang='es')
             },
             methods: {
               add() {
-                console.log(this.user)
                 axios.post('/usercurso', {
                   command: 'ADD_USER',
                   transaction: this.user
                 })
                   .then(resp => {
                     const response = resp.data
-                    console.log('oeiwbvoiebwvewv');
-                    console.log(response)
                   })
               }
             }
@@ -176,15 +173,12 @@ html(lang='es')
             },
             methods: {
               enviotarea() {
-                console.log('archivopug', this.tarea)
                 axios.post('/tarea', {
                   command: 'ENVIO_TAREA',
                   transaction: this.tarea
                 })
                   .then(resp => {
                     const response = resp.data
-                    console.log('oeiwbvoiebwvewv');
-                    console.log(response)
                   })
               }
             }
