@@ -112,7 +112,7 @@ html(lang='es')
           #tarea
             form(action='' method='')
               .modal-body(style='text-align: center;')
-                input#file.inputfile(type='file' name='file' v-model='tarea.archivo')
+                input#file.inputfile(type='file' name='file' v-model='tarea.nombre_archivo')
                 label.upbtn(for='file')
                   figure.icono
                     svg.bi.bi-file-earmark-arrow-up(xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='currentColor' viewBox='0 0 16 16')
@@ -168,11 +168,15 @@ html(lang='es')
             el: '#tarea', 
             data: {
               tarea: {
-                archivo: '',
+                id_usuario:'',
+                id_tarea:'',
+                nombre_archivo: ''
               }
             },
             methods: {
+
               enviotarea() {
+                console.log("cscdvsdv")
                 axios.post('/tarea', {
                   command: 'ENVIO_TAREA',
                   transaction: this.tarea

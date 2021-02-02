@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 const route = require("./routes");
 const morgan = require("morgan");
+const fileUpload = require("express-fileupload");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,5 +22,8 @@ app.use("/static", express.static(__dirname + "/public"));
 app.use(function(req, res, next) {
     res.status(404).send("Pagina 404");
 });
+app.use(fileUpload({
+    useTempFiles : true,
+}));
 
 module.exports = app;

@@ -7,6 +7,7 @@ const tarea = require('../controllers/tarea');
 
 const api = express.Router();
 const dbConnection = require("../connect");
+
 const connection = dbConnection();
 
 api.all("*", function(req, res, next) {
@@ -22,6 +23,7 @@ api.get("/", function(req, res) {
 
 api.get("/curso/:id/:iduser", (req, res) => {
     const { id, iduser } = req.params;
+    /* console.log(iduser); */
     let userid = [];
     connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
         userid = result[0].creador;
@@ -42,7 +44,7 @@ api.get("/crearcurso/:id", function(req, res) {
 api.get("/creartarea/:id/:userid", function(req, res) {
     const { id, userid } = req.params;
     res.render("crearTarea", { cursoid: id, userid });
-});
+}); 
 
 api.get("/login", function(req, res) {
     res.render("login");
@@ -60,6 +62,7 @@ api.get("/dashboard/:id", function(req, res) {
         cursos = result
     });
     connection.query("SELECT * FROM curso, usuario_curso WHERE id = id_curso AND id_usuario = ?", [id], (err, result) => {
+        /* console.log(result); */
         cursos2 = result
     });
     connection.query("SELECT * FROM usuario  WHERE id = ? ", [id], (err, result) => {
