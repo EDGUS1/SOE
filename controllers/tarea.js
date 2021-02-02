@@ -19,7 +19,7 @@ userOperation = function(req, res) {
 }
 
 async function enviotarea(req, res) {
-    const ut = req.body.command
+    const ut = req.body.transaction
     console.log("dvsdsdv")
     const newTarea = new UT(ut)
     //const id_c = req.params.id_c;

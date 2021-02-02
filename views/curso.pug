@@ -110,7 +110,7 @@ html(lang='es')
             button.close(type='button' data-dismiss='modal' aria-label='Close')
               span(aria-hidden='true') ×
           #tarea
-            form(action='' method='')
+            form(action='' method='' enctype="multipart/form-data")
               .modal-body(style='text-align: center;')
                 input#file.inputfile(type='file' name='file' v-model='tarea.nombre_archivo')
                 label.upbtn(for='file')
