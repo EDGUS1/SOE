@@ -44,7 +44,6 @@ api.get("/", function(req, res) {
 
 api.get("/curso/:id/:iduser", (req, res) => {
     const { id, iduser } = req.params;
-    /* console.log(iduser); */
     let userid = [];
     connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
         userid = result[0].creador;
@@ -59,7 +58,6 @@ api.get("/curso/:id/:iduser", (req, res) => {
 
 api.post("/curso/:id/:iduser", upload.single("file"), (req, res) => {
     const { id, iduser } = req.params;
-    /* console.log(iduser); */
     let userid = [];
     connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
         userid = result[0].creador;
@@ -98,7 +96,6 @@ api.get("/dashboard/:id", function(req, res) {
         cursos = result
     });
     connection.query("SELECT * FROM curso, usuario_curso WHERE id = id_curso AND id_usuario = ?", [id], (err, result) => {
-        /* console.log(result); */
         cursos2 = result
     });
     connection.query("SELECT * FROM usuario  WHERE id = ? ", [id], (err, result) => {
