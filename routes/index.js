@@ -1,4 +1,7 @@
 const express = require("express");
+const multer = require("multer");
+const mimeTypes = require("mime-types");
+
 const user = require("../controllers/user");
 const homework = require("../controllers/homework");
 const course = require("../controllers/course");
@@ -8,6 +11,25 @@ const tarea = require('../controllers/tarea');
 const api = express.Router();
 const dbConnection = require("../connect");
 const connection = dbConnection();
+
+const storage = multer.diskStorage({
+    destination: "uploads/",
+    filename: function(req, file, cb) {
+        cb(
+            "",
+            Date.now() + file.originalname + "." + mimeTypes.extension(file.mimetype)
+        );
+    },
+});
+
+const upload = multer({
+    storage: storage,
+});
+
+
+api.post("/files", upload.single("file"), (req, res) => {
+    res.send("OK");
+});
 
 api.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -22,6 +44,21 @@ api.get("/", function(req, res) {
 
 api.get("/curso/:id/:iduser", (req, res) => {
     const { id, iduser } = req.params;
+    let userid = [];
+    connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
+        userid = result[0].creador;
+        nombre_curso = result[0].nombre;
+        connection.query("SELECT * FROM tarea WHERE id_curso = ?", [id], (err, result) => {
+            profesor = false
+            if (iduser == userid) profesor = true
+            res.render("curso", { result, profesor, curso_id: id, userid, iduser, nombre_curso });
+        });
+    });
+});
+
+api.post("/curso/:id/:iduser", upload.single("file"), (req, res) => {
+    const { id, iduser } = req.params;
+    /* console.log(iduser); */
     let userid = [];
     connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
         userid = result[0].creador;
