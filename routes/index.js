@@ -57,6 +57,21 @@ api.get("/curso/:id/:iduser", (req, res) => {
     });
 });
 
+api.post("/curso/:id/:iduser", upload.single("file"), (req, res) => {
+    const { id, iduser } = req.params;
+    /* console.log(iduser); */
+    let userid = [];
+    connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
+        userid = result[0].creador;
+        nombre_curso = result[0].nombre;
+        connection.query("SELECT * FROM tarea WHERE id_curso = ?", [id], (err, result) => {
+            profesor = false
+            if (iduser == userid) profesor = true
+            res.render("curso", { result, profesor, curso_id: id, userid, iduser, nombre_curso });
+        });
+    });
+});
+
 api.get("/crearcurso/:id", function(req, res) {
     const { id } = req.params;
     res.render("crearCurso", { userid: id });
