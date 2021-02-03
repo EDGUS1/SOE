@@ -42,14 +42,15 @@ footer
             },
             methods: {
               login() {
-                console.log('execute login')
                 axios.post('/user', {
                   command: 'LOGIN_USER',
                   transaction: this.user
                 })
                   .then(resp => {
                     const response = resp.data
-                    console.log(response)
+                    if(response.status == 'SUCCESS'){
+                      window.location.href = `/dashboard/${response.transaction.id}` 
+                    }
                   })
               }
             }

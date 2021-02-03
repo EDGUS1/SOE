@@ -22,7 +22,6 @@ userOperation = function(req, res) {
 function registerHomework(req, res) {
     const tarea = req.body.transaction
     const newHomework = new Homework(tarea)
-    console.log('acscsaicnsaovabn');
     connection.query('INSERT INTO tarea values(?,?,?,?,?)', [newHomework.id, newHomework.nombre_tarea, newHomework.descripcion, newHomework.fecha_entrega, newHomework.id_curso], (err, result) => {
         if (err) {
             return res

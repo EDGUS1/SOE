@@ -64,15 +64,12 @@ footer
             },
             methods: {
               signup() {
-                console.log(this.user)
                 axios.post('/user', {
                   command: 'REGISTER_USER',
                   transaction: this.user
                 })
                   .then(resp => {
                     const response = resp.data
-                    console.log('oeiwbvoiebwvewv');
-                    console.log(response)
                   })
               }
             }
