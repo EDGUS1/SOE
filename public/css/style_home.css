@@ -406,7 +406,7 @@ main header h1 {
     font-size: xx-large;
 }
 
-#myCalendar{
+#myCalendar {
     width: 100%;
 }
 
@@ -466,7 +466,8 @@ aside ul li a {
     width: 30%;
 }
 
-#boletin input[type="submit"] {
+#boletin input[type="submit"],
+#boletin input[type="button"] {
     background-color: #ff8000;
     border: none;
     display: inline-block;
@@ -539,7 +540,8 @@ input[type="email"] {
     border: solid 1px #ccc;
 }
 
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
     display: inline-block;
     background: #008000;
     width: 100%;
@@ -666,9 +668,10 @@ input[type="submit"] {
     }
 }
 
-#myCalendarWrapper{
+#myCalendarWrapper {
     width: 5%;
 }
+
 
 /*APLICAR LOS SIGUIENTES ESTILOS MENOR A 659PX*/
 
