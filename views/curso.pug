@@ -110,7 +110,11 @@ html(lang='es')
             button.close(type='button' data-dismiss='modal' aria-label='Close')
               span(aria-hidden='true') ×
           #tarea
+<<<<<<< HEAD
             form(action=`/curso/${curso_id}/${iduser}` method='POST' enctype="multipart/form-data")
+=======
+            form(action=`/curso/${curso_id}/${iduser}` method='POST')
+>>>>>>> json
               .modal-body(style='text-align: center;')
                 input#file.inputfile(type='file' name='file')
                 label.upbtn(for='file')
