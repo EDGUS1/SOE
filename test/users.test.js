@@ -8,6 +8,7 @@ const reques=require ('supertest');
 jest.mock('axios');
 
 test('Busca un usuario', () => {
+  const listado = axios.get('/users.json');
   const users = [{
     "id": "12eb1ffb-90be-400b-b863-8f1bfdcc7376",
     "nombre": "qwe",
@@ -41,7 +42,3 @@ test('Comprobacion de dirección de email', () => {
   expect("qwe@gmail.com").toMatch(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/);
 
 });
-
-
-
-
